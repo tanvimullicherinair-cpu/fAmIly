@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Sustainability Hub</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+        * { box-sizing: border-box; }
+        html, body { height: 100%; margin: 0; }
+        body { font-family: 'Outfit', sans-serif; }
+        .mono { font-family: 'Space Mono', monospace; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(34,197,94,0.3); } 50% { box-shadow: 0 0 40px rgba(34,197,94,0.6); } }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slide-in-right { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-fade-up { animation: fadeUp 0.8s ease forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+        .animate-slide-left { animation: slide-in-left 0.8s ease forwards; }
+        .animate-slide-right { animation: slide-in-right 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+        .gradient-text { background: linear-gradient(135deg, #22c55e, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        section { padding: 80px 20px; }
+        .nav-link { transition: color 0.3s; }
+        .nav-link:hover { color: #22c55e; }
+        .demo-screen { transition: opacity 0.4s, transform 0.4s; }
+        .tab-btn { transition: all 0.3s; }
+        .tab-btn.active { background: #22c55e; color: #0a0a0a; }
+        .progress-bar { transition: width 1s ease; }
+        .team-card { transition: all 0.4s ease; }
+        .team-card:hover { transform: scale(1.05); }
+        .before-after-slider { position: relative; overflow: hidden; }
+    </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ <script src="/_sdk/telemetry_sdk.js"></script></head>
+ <body class="h-full bg-[#0a0a0a] text-white overflow-auto">
+  <div id="app" class="w-full"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 glass px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center font-bold text-sm">
+       FSH
+      </div><span class="font-semibold text-lg hidden sm:block">Family Sustainability Hub</span>
+     </div>
+     <div class="hidden md:flex items-center gap-6 text-sm"><a href="#hero" class="nav-link">Home</a> <a href="#overview" class="nav-link">Overview</a> <a href="#modes" class="nav-link">Modes</a> <a href="#demo" class="nav-link">Demo</a> <a href="#impact" class="nav-link">Impact</a> <a href="#team" class="nav-link">Team</a>
+     </div>
+    </div>
+   </nav><!-- 1. HERO SECTION -->
+   <section id="hero" class="min-h-[100%] flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+     <div class="absolute top-20 left-10 w-72 h-72 bg-green-500 rounded-full blur-[120px]"></div>
+     <div class="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500 rounded-full blur-[150px]"></div>
+     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-green-500/20 rounded-full animate-spin-slow"></div>
+    </div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4">
+     <div class="animate-float mb-8 inline-block">
+      <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center animate-pulse-glow"><i data-lucide="leaf" class="w-12 h-12 text-white"></i>
+      </div>
+     </div>
+     <p class="mono text-green-400 text-sm mb-4 animate-fade-up delay-1 tracking-widest uppercase">Introducing</p>
+     <h1 id="heroTitle" class="text-5xl md:text-7xl font-800 mb-6 animate-fade-up delay-2 gradient-text leading-tight">Family Sustainability Hub</h1>
+     <p id="heroSubtitle" class="text-xl md:text-2xl text-gray-300 mb-10 animate-fade-up delay-3 max-w-2xl mx-auto">Empowering families to build a greener future together</p>
+     <div class="flex flex-wrap justify-center gap-4 animate-fade-up delay-4"><a href="#overview" class="px-8 py-4 bg-green-500 text-black font-semibold rounded-full hover:bg-green-400 transition-all">Explore the Project</a> <a href="#demo" class="px-8 py-4 border border-green-500/50 text-green-400 rounded-full hover:bg-green-500/10 transition-all">Try the Demo</a>
+     </div>
+     <div class="mt-16 animate-fade-up delay-5 flex justify-center gap-8 text-center">
+      <div>
+       <div class="text-3xl font-bold text-green-400">
+        4
+       </div>
+       <div class="text-xs text-gray-500 mt-1">
+        Modes
+       </div>
+      </div>
+      <div>
+       <div class="text-3xl font-bold text-cyan-400">
+        ∞
+       </div>
+       <div class="text-xs text-gray-500 mt-1">
+        Possibilities
+       </div>
+      </div>
+      <div>
+       <div class="text-3xl font-bold text-green-400">
+        1
+       </div>
+       <div class="text-xs text-gray-500 mt-1">
+        Family Unit
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 2. PROJECT OVERVIEW -->
+   <section id="overview" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">01 / PROJECT OVERVIEW</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">What is the Family<br><span class="gradient-text">Sustainability Hub?</span></h2>
+     <p class="text-gray-400 max-w-3xl mx-auto text-lg">A comprehensive digital platform designed to transform how families engage with sustainability — making eco-conscious living accessible, fun, and measurable for every household member.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+     <div class="glass rounded-2xl p-8 card-hover">
+      <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center mb-5"><i data-lucide="target" class="w-7 h-7 text-green-400"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-3">Mission</h3>
+      <p class="text-gray-400">Empower every family member to take meaningful, measurable steps toward sustainability in their daily lives.</p>
+     </div>
+     <div class="glass rounded-2xl p-8 card-hover">
+      <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center mb-5"><i data-lucide="eye" class="w-7 h-7 text-cyan-400"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-3">Vision</h3>
+      <p class="text-gray-400">A world where sustainable habits are second nature, passed down through generations of environmentally conscious families.</p>
+     </div>
+     <div class="glass rounded-2xl p-8 card-hover">
+      <div class="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-5"><i data-lucide="heart" class="w-7 h-7 text-emerald-400"></i>
+      </div>
+      <h3 class="text-xl font-semibold mb-3">Values</h3>
+      <p class="text-gray-400">Inclusivity, education through play, data-driven impact, and the belief that small actions create big change.</p>
+     </div>
+    </div>
+   </section><!-- 3. THE CHALLENGE -->
+   <section id="challenge" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">02 / THE CHALLENGE</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">The Problem<br><span class="gradient-text">We're Solving</span></h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+     <div class="space-y-6">
+      <div class="glass rounded-xl p-6 border-l-4 border-red-500">
+       <h4 class="font-semibold mb-2 text-red-400">Overwhelm &amp; Confusion</h4>
+       <p class="text-gray-400 text-sm">Families want to be sustainable but don't know where to start or what actually makes a difference.</p>
+      </div>
+      <div class="glass rounded-xl p-6 border-l-4 border-orange-500">
+       <h4 class="font-semibold mb-2 text-orange-400">Engagement Gap</h4>
+       <p class="text-gray-400 text-sm">Children and teens need age-appropriate, fun ways to learn about sustainability — not lectures.</p>
+      </div>
+      <div class="glass rounded-xl p-6 border-l-4 border-yellow-500">
+       <h4 class="font-semibold mb-2 text-yellow-400">No Measurable Progress</h4>
+       <p class="text-gray-400 text-sm">Without tracking, families can't see their impact, leading to discouragement and abandonment of eco-habits.</p>
+      </div>
+      <div class="glass rounded-xl p-6 border-l-4 border-purple-500">
+       <h4 class="font-semibold mb-2 text-purple-400">Disconnected Tools</h4>
+       <p class="text-gray-400 text-sm">Existing solutions are fragmented — one app for recycling, another for energy, none bringing the family together.</p>
+      </div>
+     </div>
+     <div class="glass rounded-2xl p-8 text-center">
+      <div class="text-6xl font-bold text-red-400 mb-4">
+       73%
+      </div>
+      <p class="text-gray-300 mb-6">of families say they want to live more sustainably but lack the tools and guidance to do so effectively.</p>
+      <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+       <div class="h-full bg-gradient-to-r from-red-500 to-green-500 rounded-full" style="width:73%"></div>
+      </div>
+      <p class="text-xs text-gray-500 mt-4">Source: Environmental Awareness Survey 2024</p>
+     </div>
+    </div>
+   </section><!-- 4. MEET THE FAMILY SUSTAINABILITY HUB -->
+   <section id="solution" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">03 / THE SOLUTION</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Meet the Family<br><span class="gradient-text">Sustainability Hub</span></h2>
+     <p class="text-gray-400 max-w-3xl mx-auto text-lg">One unified platform that brings together education, tracking, challenges, and community — designed for every family member from toddlers to grandparents.</p>
+    </div>
+    <div class="glass rounded-3xl p-8 md:p-12">
+     <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+       <h3 class="text-2xl font-bold mb-6">Key Features</h3>
+       <div class="space-y-4">
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+          <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+         </div>
+         <div>
+          <h4 class="font-medium">Age-Adaptive Content</h4>
+          <p class="text-sm text-gray-400">Content adjusts to each family member's age and understanding level</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+          <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+         </div>
+         <div>
+          <h4 class="font-medium">Real-Time Impact Dashboard</h4>
+          <p class="text-sm text-gray-400">See your family's environmental impact update in real time</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+          <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+         </div>
+         <div>
+          <h4 class="font-medium">Gamified Challenges</h4>
+          <p class="text-sm text-gray-400">Weekly and monthly challenges keep the whole family motivated</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-4">
+         <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
+          <i data-lucide="check" class="w-4 h-4 text-green-400"></i>
+         </div>
+         <div>
+          <h4 class="font-medium">Community Connection</h4>
+          <p class="text-sm text-gray-400">Connect with other families and share tips and achievements</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="relative">
+       <div class="aspect-square rounded-2xl bg-gradient-to-br from-green-900/50 to-cyan-900/50 border border-green-500/20 flex items-center justify-center">
+        <div class="text-center p-8">
+         <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center"><i data-lucide="smartphone" class="w-10 h-10 text-green-400"></i>
+         </div>
+         <p class="text-gray-400 text-sm">[App Interface Placeholder]</p>
+         <p class="text-gray-500 text-xs mt-2">Dashboard Preview</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 5. FOUR MODES -->
+   <section id="modes" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">04 / FOUR MODES</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Four Powerful<br><span class="gradient-text">Modes of Engagement</span></h2>
+     <p class="text-gray-400 max-w-2xl mx-auto">Each mode targets a different aspect of sustainable family living.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+     <div class="glass rounded-2xl p-8 card-hover border border-green-500/20">
+      <div class="flex items-center gap-4 mb-5">
+       <div class="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center"><i data-lucide="book-open" class="w-7 h-7 text-green-400"></i>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold">Learn Mode</h3>
+        <p class="text-green-400 text-sm mono">Education &amp; Awareness</p>
+       </div>
+      </div>
+      <p class="text-gray-400 mb-4">Interactive lessons, videos, and quizzes that teach sustainable practices tailored to each family member's age group.</p>
+      <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400">Quizzes</span> <span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400">Videos</span> <span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400">Articles</span>
+      </div>
+     </div>
+     <div class="glass rounded-2xl p-8 card-hover border border-cyan-500/20">
+      <div class="flex items-center gap-4 mb-5">
+       <div class="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center"><i data-lucide="bar-chart-3" class="w-7 h-7 text-cyan-400"></i>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold">Track Mode</h3>
+        <p class="text-cyan-400 text-sm mono">Measure &amp; Monitor</p>
+       </div>
+      </div>
+      <p class="text-gray-400 mb-4">Log daily activities, track resource usage, and visualize your family's environmental footprint over time.</p>
+      <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400">Carbon Log</span> <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400">Water Use</span> <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400">Waste</span>
+      </div>
+     </div>
+     <div class="glass rounded-2xl p-8 card-hover border border-amber-500/20">
+      <div class="flex items-center gap-4 mb-5">
+       <div class="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center"><i data-lucide="trophy" class="w-7 h-7 text-amber-400"></i>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold">Challenge Mode</h3>
+        <p class="text-amber-400 text-sm mono">Compete &amp; Achieve</p>
+       </div>
+      </div>
+      <p class="text-gray-400 mb-4">Weekly family challenges, community competitions, and achievement badges that make sustainability a game.</p>
+      <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400">Weekly Goals</span> <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400">Badges</span> <span class="text-xs px-3 py-1 rounded-full bg-amber-500/10 text-amber-400">Leaderboard</span>
+      </div>
+     </div>
+     <div class="glass rounded-2xl p-8 card-hover border border-purple-500/20">
+      <div class="flex items-center gap-4 mb-5">
+       <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center"><i data-lucide="users" class="w-7 h-7 text-purple-400"></i>
+       </div>
+       <div>
+        <h3 class="text-xl font-bold">Connect Mode</h3>
+        <p class="text-purple-400 text-sm mono">Community &amp; Share</p>
+       </div>
+      </div>
+      <p class="text-gray-400 mb-4">Share tips, celebrate milestones, join local eco-groups, and inspire other families on their sustainability journey.</p>
+      <div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400">Forums</span> <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400">Events</span> <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400">Groups</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- 6. HOW IT WORKS -->
+   <section id="how" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">05 / HOW IT WORKS</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Simple Steps to<br><span class="gradient-text">A Greener Family</span></h2>
+    </div>
+    <div class="relative">
+     <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-green-500 to-cyan-500 opacity-30"></div>
+     <div class="space-y-12">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+       <div class="text-right md:pr-12">
+        <div class="inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm mono mb-3">
+         Step 01
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Create Your Family Profile</h3>
+        <p class="text-gray-400">Add family members, set age groups, and personalize your sustainability goals based on your household.</p>
+       </div>
+       <div class="md:pl-12">
+        <div class="glass rounded-xl p-6 flex items-center gap-4">
+         <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+          <i data-lucide="user-plus" class="w-6 h-6 text-green-400"></i>
+         </div>
+         <div class="text-sm text-gray-400">
+          Add Mom, Dad, Kids — everyone gets their own experience
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+       <div class="md:pr-12 md:order-2 text-left md:text-left">
+        <div class="inline-block px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-sm mono mb-3">
+         Step 02
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Choose Your Focus Areas</h3>
+        <p class="text-gray-400">Select from energy, water, waste, food, transport, and more. Start with what matters most to your family.</p>
+       </div>
+       <div class="md:pl-12 md:order-1">
+        <div class="glass rounded-xl p-6 flex items-center gap-4">
+         <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
+          <i data-lucide="settings" class="w-6 h-6 text-cyan-400"></i>
+         </div>
+         <div class="text-sm text-gray-400">
+          Pick categories that align with your family's values
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+       <div class="text-right md:pr-12">
+        <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-sm mono mb-3">
+         Step 03
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Take Action Together</h3>
+        <p class="text-gray-400">Complete daily activities, learn new skills, and track your progress as a family unit.</p>
+       </div>
+       <div class="md:pl-12">
+        <div class="glass rounded-xl p-6 flex items-center gap-4">
+         <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
+          <i data-lucide="zap" class="w-6 h-6 text-amber-400"></i>
+         </div>
+         <div class="text-sm text-gray-400">
+          Daily micro-actions that add up to massive impact
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+       <div class="md:pr-12 md:order-2 text-left">
+        <div class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm mono mb-3">
+         Step 04
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Celebrate &amp; Share</h3>
+        <p class="text-gray-400">Earn badges, unlock achievements, and inspire your community with your family's sustainability story.</p>
+       </div>
+       <div class="md:pl-12 md:order-1">
+        <div class="glass rounded-xl p-6 flex items-center gap-4">
+         <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+          <i data-lucide="award" class="w-6 h-6 text-purple-400"></i>
+         </div>
+         <div class="text-sm text-gray-400">
+          Share milestones and inspire the community
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 7. INTERACTIVE DEMO -->
+   <section id="demo" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">06 / INTERACTIVE DEMO</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Try It<br><span class="gradient-text">Yourself</span></h2>
+     <p class="text-gray-400 max-w-2xl mx-auto">Explore a simplified version of the Family Sustainability Hub right here.</p>
+    </div>
+    <div class="glass rounded-3xl p-6 md:p-10">
+     <div class="flex flex-wrap gap-2 mb-8 justify-center"><button onclick="switchDemo('dashboard')" class="tab-btn active px-5 py-2 rounded-full text-sm font-medium" data-tab="dashboard">Dashboard</button> <button onclick="switchDemo('tracker')" class="tab-btn px-5 py-2 rounded-full text-sm font-medium bg-white/5" data-tab="tracker">Tracker</button> <button onclick="switchDemo('challenges')" class="tab-btn px-5 py-2 rounded-full text-sm font-medium bg-white/5" data-tab="challenges">Challenges</button> <button onclick="switchDemo('badges')" class="tab-btn px-5 py-2 rounded-full text-sm font-medium bg-white/5" data-tab="badges">Badges</button>
+     </div>
+     <div id="demo-content" class="min-h-[300px]"><!-- Dashboard -->
+      <div id="demo-dashboard" class="demo-screen">
+       <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-green-500/10 rounded-xl p-5 text-center border border-green-500/20">
+         <div class="text-3xl font-bold text-green-400" id="co2-saved">
+          24.5
+         </div>
+         <div class="text-xs text-gray-400 mt-1">
+          kg CO₂ Saved This Week
+         </div>
+        </div>
+        <div class="bg-cyan-500/10 rounded-xl p-5 text-center border border-cyan-500/20">
+         <div class="text-3xl font-bold text-cyan-400">
+          156
+         </div>
+         <div class="text-xs text-gray-400 mt-1">
+          Liters Water Conserved
+         </div>
+        </div>
+        <div class="bg-amber-500/10 rounded-xl p-5 text-center border border-amber-500/20">
+         <div class="text-3xl font-bold text-amber-400">
+          12
+         </div>
+         <div class="text-xs text-gray-400 mt-1">
+          Challenges Completed
+         </div>
+        </div>
+       </div>
+       <div class="bg-white/5 rounded-xl p-5">
+        <h4 class="font-semibold mb-4 text-sm">Family Activity This Week</h4>
+        <div class="flex items-end gap-2 h-32">
+         <div class="flex-1 bg-green-500/30 rounded-t" style="height:60%"></div>
+         <div class="flex-1 bg-green-500/40 rounded-t" style="height:80%"></div>
+         <div class="flex-1 bg-green-500/50 rounded-t" style="height:45%"></div>
+         <div class="flex-1 bg-green-500/60 rounded-t" style="height:90%"></div>
+         <div class="flex-1 bg-green-500/70 rounded-t" style="height:70%"></div>
+         <div class="flex-1 bg-green-500/40 rounded-t" style="height:55%"></div>
+         <div class="flex-1 bg-green-500/80 rounded-t" style="height:100%"></div>
+        </div>
+        <div class="flex gap-2 mt-2 text-xs text-gray-500">
+         <div class="flex-1 text-center">
+          Mon
+         </div>
+         <div class="flex-1 text-center">
+          Tue
+         </div>
+         <div class="flex-1 text-center">
+          Wed
+         </div>
+         <div class="flex-1 text-center">
+          Thu
+         </div>
+         <div class="flex-1 text-center">
+          Fri
+         </div>
+         <div class="flex-1 text-center">
+          Sat
+         </div>
+         <div class="flex-1 text-center">
+          Sun
+         </div>
+        </div>
+       </div>
+      </div><!-- Tracker -->
+      <div id="demo-tracker" class="demo-screen hidden">
+       <h4 class="font-semibold mb-4">Log Today's Activities</h4>
+       <div class="space-y-3">
+        <div class="flex items-center justify-between bg-white/5 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition" onclick="toggleActivity(this)">
+         <div class="flex items-center gap-3">
+          <i data-lucide="bike" class="w-5 h-5 text-green-400"></i><span>Biked to work/school</span>
+         </div>
+         <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center activity-check"></div>
+        </div>
+        <div class="flex items-center justify-between bg-white/5 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition" onclick="toggleActivity(this)">
+         <div class="flex items-center gap-3">
+          <i data-lucide="droplets" class="w-5 h-5 text-cyan-400"></i><span>Short shower (&lt;5 min)</span>
+         </div>
+         <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center activity-check"></div>
+        </div>
+        <div class="flex items-center justify-between bg-white/5 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition" onclick="toggleActivity(this)">
+         <div class="flex items-center gap-3">
+          <i data-lucide="recycle" class="w-5 h-5 text-amber-400"></i><span>Recycled properly</span>
+         </div>
+         <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center activity-check"></div>
+        </div>
+        <div class="flex items-center justify-between bg-white/5 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition" onclick="toggleActivity(this)">
+         <div class="flex items-center gap-3">
+          <i data-lucide="salad" class="w-5 h-5 text-emerald-400"></i><span>Plant-based meal</span>
+         </div>
+         <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center activity-check"></div>
+        </div>
+        <div class="flex items-center justify-between bg-white/5 rounded-xl p-4 cursor-pointer hover:bg-white/10 transition" onclick="toggleActivity(this)">
+         <div class="flex items-center gap-3">
+          <i data-lucide="lightbulb" class="w-5 h-5 text-yellow-400"></i><span>Turned off unused lights</span>
+         </div>
+         <div class="w-6 h-6 rounded-full border-2 border-green-500 flex items-center justify-center activity-check"></div>
+        </div>
+       </div>
+       <div class="mt-6 text-center">
+        <p class="text-sm text-gray-400">Activities logged today: <span id="activity-count" class="text-green-400 font-bold">0</span>/5</p>
+       </div>
+      </div><!-- Challenges -->
+      <div id="demo-challenges" class="demo-screen hidden">
+       <h4 class="font-semibold mb-4">This Week's Challenges</h4>
+       <div class="space-y-4">
+        <div class="bg-white/5 rounded-xl p-5">
+         <div class="flex justify-between items-start mb-3">
+          <div>
+           <h5 class="font-medium">Zero Waste Wednesday</h5>
+           <p class="text-xs text-gray-400">Produce zero non-recyclable waste for one full day</p>
+          </div><span class="text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-400">+50 pts</span>
+         </div>
+         <div class="w-full h-2 bg-gray-800 rounded-full">
+          <div class="h-full bg-amber-500 rounded-full" style="width:65%"></div>
+         </div>
+         <p class="text-xs text-gray-500 mt-2">3/5 family members completed</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-5">
+         <div class="flex justify-between items-start mb-3">
+          <div>
+           <h5 class="font-medium">Meatless Week</h5>
+           <p class="text-xs text-gray-400">Go plant-based for 7 consecutive days as a family</p>
+          </div><span class="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">+100 pts</span>
+         </div>
+         <div class="w-full h-2 bg-gray-800 rounded-full">
+          <div class="h-full bg-green-500 rounded-full" style="width:40%"></div>
+         </div>
+         <p class="text-xs text-gray-500 mt-2">Day 3 of 7</p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-5">
+         <div class="flex justify-between items-start mb-3">
+          <div>
+           <h5 class="font-medium">Power Down Hour</h5>
+           <p class="text-xs text-gray-400">Turn off all non-essential electronics for 1 hour daily</p>
+          </div><span class="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400">+30 pts</span>
+         </div>
+         <div class="w-full h-2 bg-gray-800 rounded-full">
+          <div class="h-full bg-cyan-500 rounded-full" style="width:85%"></div>
+         </div>
+         <p class="text-xs text-gray-500 mt-2">6/7 days completed</p>
+        </div>
+       </div>
+      </div><!-- Badges -->
+      <div id="demo-badges" class="demo-screen hidden">
+       <h4 class="font-semibold mb-4">Family Achievements</h4>
+       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center p-4 bg-white/5 rounded-xl">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-2">
+          <i data-lucide="leaf" class="w-8 h-8 text-white"></i>
+         </div>
+         <p class="text-sm font-medium">Eco Starter</p>
+         <p class="text-xs text-gray-500">First week done</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-2">
+          <i data-lucide="droplets" class="w-8 h-8 text-white"></i>
+         </div>
+         <p class="text-sm font-medium">Water Saver</p>
+         <p class="text-xs text-gray-500">500L saved</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-2">
+          <i data-lucide="flame" class="w-8 h-8 text-white"></i>
+         </div>
+         <p class="text-sm font-medium">7-Day Streak</p>
+         <p class="text-xs text-gray-500">Week warrior</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-2">
+          <i data-lucide="users" class="w-8 h-8 text-white"></i>
+         </div>
+         <p class="text-sm font-medium">Team Player</p>
+         <p class="text-xs text-gray-500">Family goal met</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl opacity-40">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-2">
+          <i data-lucide="lock" class="w-8 h-8 text-gray-500"></i>
+         </div>
+         <p class="text-sm font-medium text-gray-500">Carbon Hero</p>
+         <p class="text-xs text-gray-600">Locked</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl opacity-40">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-2">
+          <i data-lucide="lock" class="w-8 h-8 text-gray-500"></i>
+         </div>
+         <p class="text-sm font-medium text-gray-500">Zero Waste</p>
+         <p class="text-xs text-gray-600">Locked</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl opacity-40">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-2">
+          <i data-lucide="lock" class="w-8 h-8 text-gray-500"></i>
+         </div>
+         <p class="text-sm font-medium text-gray-500">Eco Master</p>
+         <p class="text-xs text-gray-600">Locked</p>
+        </div>
+        <div class="text-center p-4 bg-white/5 rounded-xl opacity-40">
+         <div class="w-16 h-16 mx-auto rounded-full bg-gray-700 flex items-center justify-center mb-2">
+          <i data-lucide="lock" class="w-8 h-8 text-gray-500"></i>
+         </div>
+         <p class="text-sm font-medium text-gray-500">Legend</p>
+         <p class="text-xs text-gray-600">Locked</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- 8. BUILD COMPONENTS -->
+   <section id="build" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">07 / BUILD COMPONENTS</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Technical<br><span class="gradient-text">Architecture</span></h2>
+     <p class="text-gray-400 max-w-2xl mx-auto">The building blocks that power the Family Sustainability Hub.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-green-400 text-xs mb-3">
+       FRONTEND
+      </div>
+      <h4 class="font-semibold mb-2">Responsive UI</h4>
+      <p class="text-sm text-gray-400 mb-4">Mobile-first design with adaptive layouts for all devices and family members.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">React</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">Tailwind</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">PWA</span>
+      </div>
+     </div>
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-cyan-400 text-xs mb-3">
+       BACKEND
+      </div>
+      <h4 class="font-semibold mb-2">Data Engine</h4>
+      <p class="text-sm text-gray-400 mb-4">Real-time data processing and family activity aggregation.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">Node.js</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">GraphQL</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">Redis</span>
+      </div>
+     </div>
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-amber-400 text-xs mb-3">
+       AI/ML
+      </div>
+      <h4 class="font-semibold mb-2">Smart Suggestions</h4>
+      <p class="text-sm text-gray-400 mb-4">Personalized recommendations based on family habits and goals.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">TensorFlow</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">Python</span>
+      </div>
+     </div>
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-purple-400 text-xs mb-3">
+       DATABASE
+      </div>
+      <h4 class="font-semibold mb-2">Family Data Store</h4>
+      <p class="text-sm text-gray-400 mb-4">Secure, scalable storage for family profiles and activity history.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">PostgreSQL</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">MongoDB</span>
+      </div>
+     </div>
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-pink-400 text-xs mb-3">
+       GAMIFICATION
+      </div>
+      <h4 class="font-semibold mb-2">Reward System</h4>
+      <p class="text-sm text-gray-400 mb-4">Points, badges, streaks, and leaderboards that drive engagement.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">Custom Engine</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">WebSocket</span>
+      </div>
+     </div>
+     <div class="glass rounded-xl p-6 card-hover">
+      <div class="mono text-emerald-400 text-xs mb-3">
+       INTEGRATIONS
+      </div>
+      <h4 class="font-semibold mb-2">External APIs</h4>
+      <p class="text-sm text-gray-400 mb-4">Connect with smart home devices, utility providers, and eco-services.</p>
+      <div class="flex flex-wrap gap-1"><span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">IoT</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">REST</span> <span class="text-xs px-2 py-0.5 rounded bg-white/5 text-gray-400">OAuth</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- 9. PROJECT IMPACT -->
+   <section id="impact" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">08 / PROJECT IMPACT</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Projected<br><span class="gradient-text">Impact</span></h2>
+    </div>
+    <div class="grid md:grid-cols-4 gap-6 mb-12">
+     <div class="text-center glass rounded-2xl p-8">
+      <div class="text-4xl font-bold text-green-400 mb-2">
+       50K+
+      </div>
+      <p class="text-sm text-gray-400">Families Targeted<br>
+       in Year 1</p>
+     </div>
+     <div class="text-center glass rounded-2xl p-8">
+      <div class="text-4xl font-bold text-cyan-400 mb-2">
+       2.4M
+      </div>
+      <p class="text-sm text-gray-400">kg CO₂ Reduction<br>
+       Potential</p>
+     </div>
+     <div class="text-center glass rounded-2xl p-8">
+      <div class="text-4xl font-bold text-amber-400 mb-2">
+       89%
+      </div>
+      <p class="text-sm text-gray-400">User Retention<br>
+       Rate Goal</p>
+     </div>
+     <div class="text-center glass rounded-2xl p-8">
+      <div class="text-4xl font-bold text-purple-400 mb-2">
+       12
+      </div>
+      <p class="text-sm text-gray-400">SDGs<br>
+       Addressed</p>
+     </div>
+    </div>
+    <div class="glass rounded-2xl p-8">
+     <h3 class="text-xl font-bold mb-6 text-center">Impact Growth Projection</h3>
+     <div class="flex items-end gap-3 h-48 px-4">
+      <div class="flex-1 flex flex-col items-center gap-2">
+       <div class="w-full bg-gradient-to-t from-green-600 to-green-400 rounded-t" style="height:20%"></div><span class="text-xs text-gray-500">Q1</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center gap-2">
+       <div class="w-full bg-gradient-to-t from-green-600 to-green-400 rounded-t" style="height:40%"></div><span class="text-xs text-gray-500">Q2</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center gap-2">
+       <div class="w-full bg-gradient-to-t from-green-600 to-cyan-400 rounded-t" style="height:65%"></div><span class="text-xs text-gray-500">Q3</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center gap-2">
+       <div class="w-full bg-gradient-to-t from-cyan-600 to-cyan-400 rounded-t" style="height:85%"></div><span class="text-xs text-gray-500">Q4</span>
+      </div>
+      <div class="flex-1 flex flex-col items-center gap-2">
+       <div class="w-full bg-gradient-to-t from-cyan-600 to-emerald-400 rounded-t" style="height:100%"></div><span class="text-xs text-gray-500">Y2</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- 10. TEAM SHOWCASE -->
+   <section id="team" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">09 / THE TEAM</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Meet Our<br><span class="gradient-text">Team</span></h2>
+    </div><!-- Team Logo Placeholder -->
+    <div class="text-center mb-12">
+     <div class="inline-block w-32 h-32 rounded-2xl bg-gradient-to-br from-green-900/50 to-cyan-900/50 border border-green-500/20 flex items-center justify-center">
+      <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-green-900/50 to-cyan-900/50 border border-green-500/20 flex items-center justify-center">
+       <div class="text-center"><i data-lucide="hexagon" class="w-10 h-10 text-green-400 mx-auto"></i>
+        <p class="text-xs text-gray-500 mt-2">[Team Logo]</p>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+     <div class="team-card glass rounded-2xl p-6 text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-green-700 to-green-500 flex items-center justify-center mb-4"><i data-lucide="user" class="w-10 h-10 text-white"></i>
+      </div>
+      <h4 class="font-semibold">Team Member 1</h4>
+      <p class="text-xs text-green-400 mono mt-1">Project Lead</p>
+      <p class="text-xs text-gray-500 mt-2">[Photo Placeholder]</p>
+     </div>
+     <div class="team-card glass rounded-2xl p-6 text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-cyan-700 to-cyan-500 flex items-center justify-center mb-4"><i data-lucide="user" class="w-10 h-10 text-white"></i>
+      </div>
+      <h4 class="font-semibold">Team Member 2</h4>
+      <p class="text-xs text-cyan-400 mono mt-1">UX Designer</p>
+      <p class="text-xs text-gray-500 mt-2">[Photo Placeholder]</p>
+     </div>
+     <div class="team-card glass rounded-2xl p-6 text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-amber-700 to-amber-500 flex items-center justify-center mb-4"><i data-lucide="user" class="w-10 h-10 text-white"></i>
+      </div>
+      <h4 class="font-semibold">Team Member 3</h4>
+      <p class="text-xs text-amber-400 mono mt-1">Developer</p>
+      <p class="text-xs text-gray-500 mt-2">[Photo Placeholder]</p>
+     </div>
+     <div class="team-card glass rounded-2xl p-6 text-center">
+      <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple-700 to-purple-500 flex items-center justify-center mb-4"><i data-lucide="user" class="w-10 h-10 text-white"></i>
+      </div>
+      <h4 class="font-semibold">Team Member 4</h4>
+      <p class="text-xs text-purple-400 mono mt-1">Researcher</p>
+      <p class="text-xs text-gray-500 mt-2">[Photo Placeholder]</p>
+     </div>
+    </div>
+   </section><!-- 11. BEFORE VS AFTER -->
+   <section id="before-after" class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+     <p class="mono text-green-400 text-sm mb-2 tracking-widest">10 / TRANSFORMATION</p>
+     <h2 class="text-4xl md:text-5xl font-bold mb-6">Before vs<br><span class="gradient-text">After</span></h2>
+     <p class="text-gray-400 max-w-2xl mx-auto">See the difference the Family Sustainability Hub makes.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8"><!-- Before -->
+     <div class="rounded-2xl border border-red-500/30 bg-red-500/5 p-8">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+        <i data-lucide="x" class="w-5 h-5 text-red-400"></i>
+       </div>
+       <h3 class="text-xl font-bold text-red-400">Before</h3>
+      </div>
+      <ul class="space-y-4">
+       <li class="flex items-start gap-3"><i data-lucide="minus" class="w-4 h-4 text-red-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">No awareness of household environmental impact</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="minus" class="w-4 h-4 text-red-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Children disengaged from sustainability topics</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="minus" class="w-4 h-4 text-red-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">High utility bills and waste output</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="minus" class="w-4 h-4 text-red-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Feeling overwhelmed and unsure where to start</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="minus" class="w-4 h-4 text-red-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">No community support or accountability</span></li>
+      </ul>
+     </div><!-- After -->
+     <div class="rounded-2xl border border-green-500/30 bg-green-500/5 p-8">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+        <i data-lucide="check" class="w-5 h-5 text-green-400"></i>
+       </div>
+       <h3 class="text-xl font-bold text-green-400">After</h3>
+      </div>
+      <ul class="space-y-4">
+       <li class="flex items-start gap-3"><i data-lucide="plus" class="w-4 h-4 text-green-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Clear dashboard showing real-time environmental impact</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="plus" class="w-4 h-4 text-green-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Kids excited about eco-challenges and earning badges</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="plus" class="w-4 h-4 text-green-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">30% reduction in utility bills within 3 months</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="plus" class="w-4 h-4 text-green-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Clear guided steps personalized to your family's needs</span></li>
+       <li class="flex items-start gap-3"><i data-lucide="plus" class="w-4 h-4 text-green-400 mt-1 flex-shrink-0"></i><span class="text-gray-400 text-sm">Active community of like-minded families sharing wins</span></li>
+      </ul>
+     </div>
+    </div>
+   </section><!-- 12. FINAL CALL TO ACTION -->
+   <section id="cta" class="max-w-4xl mx-auto text-center">
+    <div class="glass rounded-3xl p-12 md:p-16 relative overflow-hidden">
+     <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-64 h-64 bg-green-500 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-cyan-500 rounded-full blur-[100px]"></div>
+     </div>
+     <div class="relative z-10">
+      <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center animate-pulse-glow"><i data-lucide="rocket" class="w-8 h-8 text-green-400"></i>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Build a<br><span class="gradient-text">Greener Future?</span></h2>
+      <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">Join thousands of families transforming their daily habits into lasting environmental impact. Together, we can make sustainability a family tradition.</p>
+      <div class="flex flex-wrap justify-center gap-4"><button class="px-10 py-4 bg-green-500 text-black font-bold rounded-full hover:bg-green-400 transition-all text-lg">Get Started Today</button> <button class="px-10 py-4 border border-white/20 text-white rounded-full hover:bg-white/5 transition-all text-lg">Learn More</button>
+      </div>
+      <p class="text-xs text-gray-500 mt-8">Free to start • No credit card required • Built for families</p>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 px-6 border-t border-white/5 mt-20">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+     <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center font-bold text-xs">
+       FSH
+      </div><span class="text-sm text-gray-400">Family Sustainability Hub © 2024</span>
+     </div>
+     <div class="flex gap-6 text-sm text-gray-500"><span>Built with 💚 for the planet</span>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        // Demo tab switching
+        function switchDemo(tab) {
+            document.querySelectorAll('.demo-screen').forEach(s => { s.classList.add('hidden'); });
+            document.getElementById('demo-' + tab).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.classList.add('bg-white/5'); });
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            document.querySelector(`[data-tab="${tab}"]`).classList.remove('bg-white/5');
+            lucide.createIcons();
+        }
+
+        // Activity toggle
+        function toggleActivity(el) {
+            const check = el.querySelector('.activity-check');
+            if (check.innerHTML) {
+                check.innerHTML = '';
+                check.style.background = 'transparent';
+            } else {
+                check.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+                check.style.background = '#22c55e';
+            }
+            const count = document.querySelectorAll('.activity-check[style*="background: rgb(34, 197, 94)"]').length;
+            document.getElementById('activity-count').textContent = count;
+        }
+
+        // Init Lucide
+        lucide.createIcons();
+
+        // Element SDK
+        const defaultConfig = {
+            hero_title: 'Family Sustainability Hub',
+            hero_subtitle: 'Empowering families to build a greener future together',
+            background_color: '#0a0a0a',
+            surface_color: '#1a1a2e',
+            text_color: '#ffffff',
+            primary_color: '#22c55e',
+            secondary_color: '#06b6d4',
+            font_family: 'Outfit',
+            font_size: 16
+        };
+
+        function applyConfig(config) {
+            const title = document.getElementById('heroTitle');
+            const subtitle = document.getElementById('heroSubtitle');
+            if (title) title.textContent = config.hero_title || defaultConfig.hero_title;
+            if (subtitle) subtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+            document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+            document.body.style.color = config.text_color || defaultConfig.text_color;
+            document.body.style.fontFamily = `${config.font_family || defaultConfig.font_family}, sans-serif`;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange: async (config) => { applyConfig(config); },
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+                        { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+                        { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+                        { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+                        { get: () => config.secondary_color || defaultConfig.secondary_color, set: (v) => { config.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); } }
+                    ],
+                    borderables: [],
+                    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+                    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ['hero_title', config.hero_title || defaultConfig.hero_title],
+                    ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a091dcefafa3030f',t:'MTc4MTAyNjIxNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
